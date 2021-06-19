@@ -38,33 +38,36 @@ const checkLimit = (limit: number, actual: number, checkType: Validator): void =
     }
 }
 
+const getDiffs = async (): Promise<string[]> => {
+    const { sha } = context;
+    let output = "";
+    let errorOutput = "";
+    const options = {
+        listeners: {
+            stdout: (data: Buffer) => {
+                output += data.toString()
+            },
+            stderr: (data: Buffer) => {
+                errorOutput += data.toString()
+            }
+        }
+    }
+    await exec(`git diff --shortstat origin/main ${sha} | awk '{print $4, $6}'`, [], options);
+    if(errorOutput) {
+        throw new Error(`Error while determining lines changed --- ${errorOutput}`);
+    }
+    if(!output) {
+        throw new Error(`Unable to get git diff`);
+    }
+    return output.split(" ");
+}
+
 const run = async (): Promise<void> => {
     try {
         const addLimit = getNumberFromInput(getInput("addLimit", { required: false }));
         const removeLimit = getNumberFromInput(getInput("removeLimit", { required: false }));
-        const totalLimit = getNumberFromInput(getInput("totalLimit", { required: false }));
-
-        const { sha } = context;
-        let output = "";
-        let errorOutput = "";
-        const options = {
-            listeners: {
-                stdout: (data: Buffer) => {
-                    output += data.toString()
-                },
-                stderr: (data: Buffer) => {
-                    errorOutput += data.toString()
-                }
-            }
-        }
-        await exec(`git diff --shortstat origin/main ${sha} | awk '{print $4, $6}'`, [], options);
-        if(errorOutput) {
-            throw new Error(`Error while determining lines changed --- ${errorOutput}`);
-        }
-        if(!output) {
-            throw new Error(`Unable to get git diff`);
-        }
-        const diffs = output.split(" ");
+        const totalLimit = getNumberFromInput(getInput("totalLimit", { required: false }));   
+        const diffs = await getDiffs();
         validateDiffs(diffs);
         const added = parseInt(diffs[0]);
         const removed = parseInt(diffs[1]);
