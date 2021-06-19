@@ -1,0 +1,32 @@
+{
+  "name": "pr-too-big",
+  "version": "1.0.0",
+  "description": "A Github Action to enforce pull request sizes",
+  "main": "index.js",
+  "repository": "https://github.com/JoeAmedeo/too-big.git",
+  "author": "JoeAmedeo <joseph_amedeo@yahoo.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@actions/core": "^1.4.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.29.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "husky": "^6.0.0",
+    "jest": "^27.0.4",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "int-staged"
+    }
+  },
+  "lint-staged": {
+    "**/*.ts": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
+}
