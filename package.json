@@ -4,10 +4,12 @@
   "description": "A Github Action to enforce pull request sizes",
   "main": "index.js",
   "repository": "https://github.com/JoeAmedeo/too-big.git",
-  "author": "JoeAmedeo <joseph_amedeo@yahoo.com>",
+  "author": "JoeAmedeo",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.4.0"
+    "@actions/core": "^1.4.0",
+    "@actions/exec": "^1.1.0",
+    "@actions/github": "^5.0.0"
   },
   "devDependencies": {
     "eslint": "^7.29.0",

@@ -1,13 +1,10 @@
 name: 'Hello World'
 description: 'Greet someone and record the time'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  lineLimit:  # id of input
+    description: 'The max amount of lines to tolerate in a PR'
     required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+    default: '400'
 runs:
   using: 'node12'
   main: 'dist/index.js'
