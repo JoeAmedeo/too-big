@@ -22,7 +22,7 @@ jest.mock("@actions/exec", () => {
     }
 })
 
-const mockExec = mocked(exec, true);
+const mockExec = mocked(exec);
 
 describe("getDiffs tests", () => {
     it("should return an array of strings containing the values of diffs", async () => {

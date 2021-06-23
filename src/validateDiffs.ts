@@ -3,7 +3,7 @@ export const validateDiffs = (diffs: string[]): void => {
         throw new Error(`Did not get the proper amount of output strings from git diff, expected 2 but got ${diffs.length}`);
     }
     diffs.forEach((value: string) => {
-        if(parseInt(value) === NaN) {
+        if(isNaN(parseInt(value))) {
             throw new Error(`Diff value was not an integer, recieved: ${value}`);
         }
     })

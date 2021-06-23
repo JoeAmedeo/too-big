@@ -10,6 +10,6 @@ describe("validateDiffs tests", () => {
     });
 
     it("should throw if any values are not a number", () => {
-        expect(() => validateDiffs(["25", "ten"])).not.toThrow(`Diff value was not an integer, recieved: ${"ten"}`);
+        expect(() => validateDiffs(["25", "ten"])).toThrow(`Diff value was not an integer, recieved: ${"ten"}`);
     });
 })
