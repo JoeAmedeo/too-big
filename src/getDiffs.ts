@@ -15,7 +15,7 @@ export const getDiffs = async (): Promise<string[]> => {
             }
         }
     }
-    await exec(`git diff --shortstat origin/main ${sha} | awk '{print $4, $6}'`, [], options);
+    await exec(`git diff --numstat origin/main ${sha} | awk '{print $1, $2}'`, [], options);
     if(errorOutput) {
         throw new Error(`Error while determining lines changed --- ${errorOutput}`);
     }

@@ -6,15 +6,15 @@ This github action allows you to enforce line change limits to pull requests.
 
 ## `addLimit`
 
-The maximum number of lines of code that can be added before failure. Leaving this value empty will skip the validation.
+The maximum number of lines of code that can be added before failure. Not supplying this value will skip the validation.
 
 ## `removeLimit`
 
-The maximum number of lines of code that can be removed before failure. Leaving this value empty will skip the validation.
+The maximum number of lines of code that can be removed before failure. Not supplying this value will skip the validation.
 
 ## `totalLimit`
 
-The maximum number of lines of code that can be added before failure. Leaving this value empty will skip the validation.
+The maximum number of lines of code that can either be added or removed (total = added + removed). Not supplying this value will skip the validation.
 
 ## Example usage
 ```
